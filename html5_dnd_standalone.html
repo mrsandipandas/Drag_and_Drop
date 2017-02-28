@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="content-type"/>
+<title>HTML5 Drag and Drop</title>
+<style type="text/css">
+#user-levels {
+	width: 900px;
+	margin: 0 auto;
+}
+
+#super-admins, #admins, #editors, #contributors, #unassigned {
+	float: left;
+	width: 202px;
+	height: 170px;
+	padding: 5px 10px;
+	margin-right: 3px;
+	background: #eee;
+	text-align: center;
+}
+.user {
+	width: 100px;
+	padding: 0 5px;
+	display: block;
+	margin: 0 auto 3px;
+	text-align: center;
+	border: 1px solid #aaa;
+	background: #ddd;	
+	cursor: move;
+}
+
+.clear {
+	clear: both;
+}
+</style>
+
+<script>
+function dragUser(user, event) {
+    event.dataTransfer.setData('User', user.id);
+}
+function dropUser(target, event) {
+    var user = event.dataTransfer.getData('User');
+    target.appendChild(document.getElementById(user)); 
+}
+</script>
+
+</head>
+<body>
+<section id="user-levels">
+	<p>HTML5 Drag and Drop example</p>
+	<div id="unassigned" ondrop="dropUser(this, event)" ondragenter="return false" ondragover="return false">
+		Unassigned
+		<a draggable="true" class="user" id="leonardo" ondragstart="dragUser(this, event)">Leonardo</a>
+		<a draggable="true" class="user" id="raphael" ondragstart="dragUser(this, event)">Raphael</a> 
+		<a draggable="true" class="user" id="michelangelo" ondragstart="dragUser(this, event)">Michelangelo</a> 
+		<a draggable="true" class="user" id="donatello" ondragstart="dragUser(this, event)">Donatello</a> 
+		<a draggable="true" class="user" id="splinter" ondragstart="dragUser(this, event)">Splinter</a> 
+		<a draggable="true" class="user" id="shredder" ondragstart="dragUser(this, event)">Shredder</a> 
+	</div>
+	
+	<div id="contributors" ondrop="dropUser(this, event)" ondragenter="return false" ondragover="return false">
+		Contributors
+	</div>
+	
+	<div id="editors" ondrop="dropUser(this, event)" ondragenter="return false" ondragover="return false">
+		Editors
+	</div>
+	
+	<div id="admins" ondrop="dropUser(this, event)" ondragenter="return false" ondragover="return false">
+		Admins
+	</div>
+
+	<div class="clear"></div>
+</section>
+
+</body>
+</html>
